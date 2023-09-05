@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../data/datasources/history_datasource_impl.dart';
 import '../../data/repositories/history_repository_impl.dart';
+import '../../domain/entities/history.dart';
 import '../../domain/usecases/get_history.dart';
 import '../stores/history_store.dart';
 
 class HistoryPage extends StatefulWidget {
-  const HistoryPage({super.key});
+  final Function(History) onTapHistory;
+  const HistoryPage({
+    super.key,
+    required this.onTapHistory,
+  });
 
   @override
   State<HistoryPage> createState() => _HistoryPageState();
@@ -21,6 +27,10 @@ class _HistoryPageState extends State<HistoryPage> {
     super.initState();
     store.getHistory();
   }
+
+  void Function(History) get onTapHistory => widget.onTapHistory;
+
+  final formatter = DateFormat('dd/MM/yyyy HH:mm:ss');
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +61,10 @@ class _HistoryPageState extends State<HistoryPage> {
                 itemBuilder: (context, index) {
                   final history = state.history[index];
                   return ListTile(
+                    leading: const Icon(Icons.history),
                     title: Text(history.query),
-                    subtitle: Text(history.createdAt.toIso8601String()),
-                    onTap: () => store.onSelectHistory(history),
+                    subtitle: Text(formatter.format(history.createdAt)),
+                    onTap: () => onTapHistory(history),
                   );
                 },
               );

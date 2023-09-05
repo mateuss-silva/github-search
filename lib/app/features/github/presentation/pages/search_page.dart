@@ -1,34 +1,24 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/datasources/github_datasource_impl.dart';
-import '../../data/datasources/history_datasource_impl.dart';
-import '../../data/repositories/github_repository_impl.dart';
-import '../../data/repositories/history_repository_impl.dart';
-import '../../domain/usecases/get_user_usecase.dart';
-import '../../domain/usecases/search_users_usecase.dart';
 import '../stores/github_store.dart';
 import '../widgets/search_bar_widget.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+  const SearchPage({super.key, required this.store, required this.textController});
+
+  final GitHubStore store;
+  final  TextEditingController textController ;
 
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final dio = Dio();
-  final history = HistoryRepositoryImpl(HistoryDataSourceImpl());
-  late final github = GitHubRepositoryImpl(GitHubDataSourceImpl(dio));
-  late final store =
-      GitHubStore(SearchUsersUsecase(github, history), GetUserUsecase(github));
-
-  final searchController = TextEditingController();
 
   Timer? timer;
+  GitHubStore get store  => widget.store;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +28,7 @@ class _SearchPageState extends State<SearchPage> {
         Padding(
             padding: const EdgeInsets.symmetric(horizontal: 14.0),
             child: SearchBarWidget(
-              controller: searchController,
+              controller: widget.textController,
               onChanged: (query) => _debounce(() => store.search(query)),
             )),
         ValueListenableBuilder(

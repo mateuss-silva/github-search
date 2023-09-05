@@ -1,5 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/datasources/github_datasource_impl.dart';
+import '../../data/datasources/history_datasource_impl.dart';
+import '../../data/repositories/github_repository_impl.dart';
+import '../../data/repositories/history_repository_impl.dart';
+import '../../domain/entities/history.dart';
+import '../../domain/usecases/get_user_usecase.dart';
+import '../../domain/usecases/search_users_usecase.dart';
+import '../stores/github_store.dart';
 import 'history_page.dart';
 import 'search_page.dart';
 
@@ -10,11 +19,16 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  final dio = Dio();
+  final history = HistoryRepositoryImpl(HistoryDataSourceImpl());
+  late final github = GitHubRepositoryImpl(GitHubDataSourceImpl(dio));
+  late final githubStore =
+      GitHubStore(SearchUsersUsecase(github, history), GetUserUsecase(github));
+
+  final searchController = TextEditingController();
+  late final _tabController = TabController(length: 2, vsync: this);
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +38,31 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('GitHub Users'),
-          bottom: const TabBar(
-            tabs: [
+          bottom: TabBar(
+            controller: _tabController,
+            tabs: const [
               Tab(text: 'Usuários'),
               Tab(text: 'Histórico'),
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
+          controller: _tabController,
           children: [
-            SearchPage(),
-            HistoryPage(),
+            SearchPage(
+              store: githubStore,
+              textController: searchController,
+            ),
+            HistoryPage(onTapHistory: _onTapHistory),
           ],
         ),
       ),
     );
+  }
+
+  void _onTapHistory(History history) {
+    searchController.text = history.query;
+    githubStore.search(history.query);
+    _tabController.animateTo(0);
   }
 }
