@@ -9,7 +9,7 @@ void main() {
     createdAt: DateTime.parse('2020-01-01 00:00:00'),
   );
 
-  test('should be a subclass of History entity', () async {
+  test('should be a entity', () async {
     // assert
     expect(tHistory, isA<Entity>());
   });
