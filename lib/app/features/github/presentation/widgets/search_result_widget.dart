@@ -24,7 +24,10 @@ class SearchResultWidget extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14.0),
               child: ListTile(
-                onTap: () => onTapUser(user),
+                onTap: () {
+                  FocusScope.of(context).unfocus();
+                  onTapUser(user);
+                },
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(user.avatarUrl),
                 ),

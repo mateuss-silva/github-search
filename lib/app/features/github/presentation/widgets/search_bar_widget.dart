@@ -18,7 +18,7 @@ class SearchBarWidget extends StatelessWidget {
         fillColor: Color(0xFFF0F1F2),
         filled: true,
         contentPadding: EdgeInsets.symmetric(vertical: 10.0),
-        hintText: "Search Anything",
+        hintText: "Search username...",
         prefixIcon: Icon(Icons.search),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
