@@ -1,0 +1,27 @@
+{
+    "total_count": 1,
+    "incomplete_results": false,
+    "items": [
+        {
+            "login": "mateuss-silva",
+            "id": 35904539,
+            "node_id": "MDQ6VXNlcjM1OTA0NTM5",
+            "avatar_url": "https: //avatars.githubusercontent.com/u/35904539?v=4",
+            "gravatar_id": null,
+            "url": "https: //api.github.com/users/mateuss-silva",
+            "html_url": "https://github.com/mateuss-silva",
+            "followers_url": "https: //api.github.com/users/mateuss-silva/followers",
+            "following_url": "https: //api.github.com/users/mateuss-silva/following{/other_user}",
+            "gists_url": "https: //api.github.com/users/mateuss-silva/gists{/gist_id}",
+            "starred_url": "https: //api.github.com/users/mateuss-silva/starred{/owner}{/repo}",
+            "subscriptions_url": "https: //api.github.com/users/mateuss-silva/subscriptions",
+            "organizations_url": "https: //api.github.com/users/mateuss-silva/orgs",
+            "repos_url": "https: //api.github.com/users/mateuss-silva/repos",
+            "events_url": "https: //api.github.com/users/mateuss-silva/events{/privacy}",
+            "received_events_url": "https: //api.github.com/users/mateuss-silva/received_events",
+            "type": "User",
+            "site_admin": false,
+            "score": 1.0
+        }
+    ]
+}

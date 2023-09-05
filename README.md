@@ -9,12 +9,16 @@ O aplicativo tem como objetivo mostrar usuários do github e suas informações.
 <img src="/assets/history.png" alt="history" style="height: 450px; "/>
 </div>
 
+### Como rodar
+
+Para rodar o aplicativo é necessário ter o Flutter instalado na máquina. Ao clonar o repositório, basta rodar o comando `flutter run` na pasta do projeto.
+
 ### Testes de unidade
 
 Nos testes de unidade foi utilizando o [Mocktail](https://pub.dev/packages/mocktail), biblioteca de teste que fornece uma sintaxe simples para criar mocks.
 
 
-## Detalhes Técnicos
+### Detalhes Técnicos
 
 ### API
 O aplicativo foi viabilizado utilizada a API [Fake Store](https://api.github.com).
