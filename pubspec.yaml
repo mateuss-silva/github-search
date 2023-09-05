@@ -1,0 +1,27 @@
+name: github_search
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+
+dependencies:
+  cupertino_icons: ^1.0.5
+  dartz: ^0.10.1
+  dio: ^5.3.0
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_modular: ^6.3.1
+  font_awesome_flutter: ^10.5.0
+  mocktail: ^1.0.0
+  shared_preferences: ^2.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
