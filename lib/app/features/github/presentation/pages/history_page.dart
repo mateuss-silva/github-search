@@ -74,3 +74,6 @@ class _HistoryPageState extends State<HistoryPage> {
     );
   }
 }
+// TODO ● Código Testável (unit test)
+// TODO ● Como rodar sua aplicação
+// TODO ● Padrões de Projeto 
